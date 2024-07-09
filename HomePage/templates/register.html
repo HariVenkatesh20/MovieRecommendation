@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'style.css' %}">   
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" >
+  <title>REGISTER</title>
+</head>
+<body style="background-image: url(../static/img/);">
+  <div class="container">
+    <form method="POST" action="{% url 'register_user' %}" class="form-container" id="registration-form">
+      {% csrf_token %}
+      <h2>Register</h2>
+      <input type="text" id="register-username" placeholder="username" name="username" required>
+      <input type="email" id="register-email" placeholder="enter email" name="email" required>
+      <input type="password" id="register-password" placeholder="enter password" name="password" required>
+      <button type="submit" class="btn">Register</button>
+    </form>
+
+    <!--<div class="form sign-up">
+      <h2>Create your Account</h2>
+      <form id="registerform" method="post" action="">
+        {% csrf_token %}
+          <label>
+              <span>Name</span>
+              <input type="text" id="username" name="username" required/>
+          </label>
+          <label>
+              <span>Email</span>
+              <input type="email" id="email" name="email" required />
+          </label>
+          <label>
+              <span>Password</span>
+              <input type="password" id="password" name="password" required/>
+          </label>
+          <button type="submit" name="registerbt" class="submit">Sign Up</button>
+      </form>-->
+  </div>
+</body>
+</html>

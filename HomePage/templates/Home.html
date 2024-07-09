@@ -1,0 +1,124 @@
+<!-- Homepage.html -->
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'tstyle.css' %}">   
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" >
+    <title>Movie Recommendation System</title>
+</head>
+<body>
+  <div class="header">
+    <img id="logo" src="../static/img/logo.png" alt="no logo">
+       <ul>
+        <li><a href="{% url 'mainhome' %}">Home</a></li>
+        <li><a href="about">About</a></li>
+        <li><a href="#popular">Popular</a></li>
+      </ul>    
+      <div class="search-box">
+        <form action="{% url 'search_bar' %}" method="GET">
+          {% csrf_token %}
+          <div class="search-container">
+          <input type="search" placeholder="search here" id="searchInput" name="q">
+          <div id="suggestions" class="dropdown-content"></div>
+          </div>
+        </form>  
+      </div>
+      {% if user.is_authenticated %}
+          <button type="button" class="open-button"><a href="logout">logout</a></button>
+      {% else %}
+          <button type="button" class="open-button"><a href="login">login</a></button> 
+      {% endif %}          
+  </div>
+  <div class="slideshow-container">
+    <div class="mySlides fade active">
+      <img src="../static/img/img8.jpg" >
+      <div class="caption-text">
+        <h1>Intersteller</h1>
+        <p>When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot, Joseph Cooper, is tasked to 
+           pilot a spacecraft, along with a team of researchers,
+           to find a new planet for humans.</p>
+        <button id="butn" type="button" onclick="window.open('https://www.youtube.com/trailer/Intersteller', '_blank')" class="watch-button" >Watch Trailer</button>
+      </div>
+    </div>
+    <div class="mySlides fade">
+      <img src="../static/img/img4.jpg" >
+      <div class="caption-text">
+        <h1>Justice league</h1>
+        <p>The Justice League, or Justice League of America (JLA), is a team of superheroes appearing in 
+           American comic books published by DC Comics.</p>
+        <button id="butn" type="button" onclick="window.open('https://www.youtube.com/trailer/justice league', '_blank')" class="watch-button">Watch Trailer</button>
+      </div>
+    </div>
+  
+    <div class="mySlides fade">
+      <img src="../static/img/img.jpg" >
+      <div class="caption-text">
+        <h1>Spider man 2</h1>
+        <p>Peter Parker is beset with troubles in his failing personal life as he battles a former
+           brilliant scientist named Otto Octavius.</p>
+        <button id="butn" type="button" onclick="window.open('', '_blank')" class="watch-button" >Watch Trailer</button>
+      </div>
+    </div>
+  
+    <div class="mySlides fade">
+      <img src="../static/img/img6.jpg" >
+      <div class="caption-text">
+        <h1>John wick</h1>
+        <p>An ex-hitman comes out of retirement to track down the gangsters who killed his dog 
+           and stole his car</p>
+        <button id="butn" type="button" onclick="window.open('https://www.youtube.com/trailer/John wick', '_blank')" class="watch-button">Watch Trailer</button>
+      </div>
+    </div>
+  
+    <div class="mySlides fade">
+      <img src="../static/img/img10.jpg" >
+      <div class="caption-text">
+        <h1>Batman:Dark knight</h1>
+        <p>When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, 
+          Batman must accept one of the greatest psychological and physical 
+          tests of his ability to fight injustice.</p>
+        <button id="butn" type="button" onclick="window.open('https://www.youtube.com/trailer/batman:dark knight', '_blank')" class="watch-button">Watch Trailer</button>
+      </div>
+    </div>
+  </div><br>
+  <h1 id="heading">Popular movies..</h1>
+<div id="popular" class="card-container">
+  <div class="card">
+    <img src="https://image.tmdb.org/t/p/w500//oYuLEt3zVCKq57qu2F8dT7NIa6f.jpg" alt="Placeholder Image">
+    <h3><a href="{% url 'search_bar' %}?q=Inception">Inception</a></h3>
+  </div>
+  <div class="card">
+    <img src="https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg" alt="Placeholder Image">
+    <h3><a href="{% url 'search_bar' %}?q=The Dark knight">The Dark knight</a></h3>
+  </div>
+  <div class="card">
+    <img src="https://image.tmdb.org/t/p/w500/d5iIlFn5s0ImszYzBPb8JPIfbXD.jpg" alt="Placeholder Image">
+    <h3><a href="{% url 'search_bar' %}?q=Pulp Fiction">Pulp Fiction</a></h3>
+  </div>
+  <div class="card">
+    <img src="https://image.tmdb.org/t/p/w500/7oWY8VDWW7thTzWh3OKYRkWUlD5.jpg" alt="Placeholder Image">
+    <h3><a href="{% url 'search_bar' %}?q=Django Unchained">Django Unchained</a></h3>
+  </div>
+  <div class="card">
+    <img src="https://image.tmdb.org/t/p/w500/xFw9RXKZDvevAGocgBK0zteto4U.jpg" alt="Placeholder Image">
+    <h3><a href="{% url 'search_bar' %}?q=Suicide Squad">Suicide Squad</a></h3>
+  </div>
+  <div class="card">
+    <img src="https://image.tmdb.org/t/p/w500/z8onk7LV9Mmw6zKz4hT6pzzvmvl.jpg" alt="Placeholder Image">
+    <h3><a href="{% url 'search_bar' %}?q=Pirates of the Caribbean">Pirates of the Caribbean</a></h3>
+  </div>
+  <div class="card">
+    <img src="https://image.tmdb.org/t/p/w500/hbhFnRzzg6ZDmm8YAmxBnQpQIPh.jpg" alt="Placeholder Image">
+    <h3><a href="{% url 'search_bar' %}?q=WALLÂ·E">WALLÂ·E</a></h3>
+  </div>
+</div>
+ <script src="../static/main.js">
+
+  </script>
+  <div class="footer">
+  </div>
+</body>
+</html>

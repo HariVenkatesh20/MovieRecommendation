@@ -1,0 +1,119 @@
+<!-- recommend.html -->
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/jstyle.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <title>Recommendation System</title>
+</head>
+<body>
+  <div class="header">
+        <img id="logo" src="../static/image/logo.png" alt="no logo">
+            <ul>
+                <li><a href="{% url 'mainhome' %}">Home</a></li>
+                <li><a href="#recommendation">Recommend</a></li>
+                <li><a href="#heading">Popular</a></li>
+            </ul>
+            <div class="search-box">
+                <form action="{% url 'search_bar' %}" method="GET">
+                  {% csrf_token %}
+                  <input type="search" placeholder="search here" id="search-bar" name="q">
+                </form>  
+            </div>
+  </div>
+  <div class="container">
+          {% if  matched_movies %}
+            <div class="movie-thumbnail">
+              <img src="https://image.tmdb.org/t/p/w500{{ matched_movies.0.poster_path }}" alt="{{ matched_movies.0.title }}">
+              <div class="movie-title"><h2>{{ matched_movies.0.title }}</h2></div>
+              <div class="movie-details">
+                <p><strong>Genre:</strong> {{ matched_movies.0.genres }}</p>
+                <p><strong>Runtime:</strong> {{ matched_movies.0.runtime }} mins</p>
+                <p><strong>Overview:</strong>{{ matched_movies.0.overview }}</p>
+                <!-- Add more details here as needed -->
+                <a href="https://www.youtube.com/0osGZGwFNkk" target="_blank" class="btn btn-primary">Watch Trailer</a>
+              </div>
+            </div>
+          {% endif %}
+  </div>  
+<!--<div class="row">
+    <p id="recommendation">Recommended For You...</p>
+    <div class="card-container">
+      {% for movie in recommend_movies %}
+        <div class="card">
+              <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}">
+              <h3><a href=>{{ movie.title }}</a></h3>
+        </div>
+    </div>
+      {% endfor %}
+  </div>-->
+  <p id="recommendation">Recommended For You...</p>
+
+      <div class="card-container">
+        <div class="card">
+              <img src="https://image.tmdb.org/t/p/w500/kyeqWdyUXW608qlYkRqosgbbJyK.jpg">
+              <h3><a href="{% url 'search_bar' %}?q=Avatar">Avatar</a></h3>
+        </div>
+  
+        <div class="card">
+              <img src="https://image.tmdb.org/t/p/w500/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg">
+              <h3><a href="{% url 'search_bar' %}?q=The Matrix">The Matrix</a></h3>
+        </div>
+
+        <div class="card">
+              <img src="https://image.tmdb.org/t/p/w500/4MpN4kIEqUjW8OPtOQJXlTdHiJV.jpg">
+              <h3><a href="{% url 'search_bar' %}?q=Batman Begins">Batman Begin</a></h3>
+        </div>
+
+        <div class="card">
+              <img src="https://image.tmdb.org/t/p/w500/hr0L2aueqlP2BYUblTTjmtn0hw4.jpg">
+              <h3><a href="{% url 'search_bar' %}?q=The Dark Knight Rises">The Dark Knight Rises</a></h3>
+        </div>
+
+        <div class="card">
+              <img src="https://image.tmdb.org/t/p/w500/sNSvwqiNXjEvDSeQFsJAGPEP7Gl.jpg">
+              <h3><a href="{% url 'search_bar' %}?q=X-Men: The Last Stand">X-Men: The Last Stand</a></h3>
+        </div>
+
+        <div class="card">
+              <img src="https://image.tmdb.org/t/p/w500/zq8Cl3PNIDGU3iWNRoc5nEZ6pCe.jpg">
+              <h3><a href="{% url 'search_bar' %}?q=Deadpool">Deadpool</a></h3>
+        </div>
+      </div>
+
+  <h1 id="heading">Popular movies..</h1>
+  <div id="Popular" class="card-container">
+        <div class="card">
+          <img src="https://image.tmdb.org/t/p/w500//oYuLEt3zVCKq57qu2F8dT7NIa6f.jpg" alt="Placeholder Image">
+          <h3><a href="{% url 'search_bar' %}?q=Inception">Inception</a></h3>
+        </div>
+        <div class="card">
+          <img src="https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg" alt="Placeholder Image">
+          <h3><a href="{% url 'search_bar' %}?q=The Dark knight">The Dark knight</a></h3>
+        </div>
+        <div class="card">
+          <img src="https://image.tmdb.org/t/p/w500/d5iIlFn5s0ImszYzBPb8JPIfbXD.jpg" alt="Placeholder Image">
+          <h3><a href="{% url 'search_bar' %}?q=Pulp Fiction">Pulp Fiction</a></h3>
+        </div>
+        <div class="card">
+          <img src="https://image.tmdb.org/t/p/w500/7oWY8VDWW7thTzWh3OKYRkWUlD5.jpg" alt="Placeholder Image">
+          <h3><a href="{% url 'search_bar' %}?q=Django Unchained">Django Unchained</a></h3>
+        </div>
+        <div class="card">
+          <img src="https://image.tmdb.org/t/p/w500/xFw9RXKZDvevAGocgBK0zteto4U.jpg" alt="Placeholder Image">
+          <h3><a href="{% url 'search_bar' %}?q=Suicide Squad">Suicide Squad</a></h3>
+        </div>
+        <div class="card">
+          <img src="https://image.tmdb.org/t/p/w500/z8onk7LV9Mmw6zKz4hT6pzzvmvl.jpg" alt="Placeholder Image">
+          <h3><a href="{% url 'search_bar' %}?q=Pirates of the Caribbean">Pirates of the Caribbean</a></h3>
+        </div>
+        <div class="card">
+          <img src="https://image.tmdb.org/t/p/w500/hbhFnRzzg6ZDmm8YAmxBnQpQIPh.jpg" alt="Placeholder Image">
+          <h3><a href="{% url 'search_bar' %}?q=WALLÂ·E">WALLÂ·E</a></h3>
+        </div>
+  </div>     
+</body>
+</html>
